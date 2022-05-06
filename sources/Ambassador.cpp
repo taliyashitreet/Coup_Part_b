@@ -7,11 +7,13 @@ namespace coup
 {
     Ambassador::Ambassador(Game &game, string name) : Player(game, move(name))
     {
-        this->player_role = "Ambassador";
+        this->plyer_role = "Ambassador";
     }
+
     void Ambassador::transfer(Player &from_player, Player &to_player)
     {
         is_my_turn();
+        coins_10();
         if (from_player.coins() <= 0)
         {
             throw runtime_error("doesnt have engoth money");
@@ -24,7 +26,7 @@ namespace coup
 
 void coup::Ambassador::block(Player &player)
 {
-    if (player.player_role != "Captain")
+    if (player.role() != "Captain")
     {
         throw runtime_error("Ambassador can block only Captain");
     }
@@ -32,6 +34,7 @@ void coup::Ambassador::block(Player &player)
     {
         throw runtime_error("You missed the block option");
     }
+    
     player.blocked();
 }
 }

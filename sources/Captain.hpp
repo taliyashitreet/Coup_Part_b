@@ -4,6 +4,9 @@ using namespace std;
 
 namespace coup{
     class Captain: public Player{
+        private:
+        Player *last_steal;
+        int Isteal;
         public:
             Captain(Game& game, string name);
             static void block(Player &player); // block another Captain steal
